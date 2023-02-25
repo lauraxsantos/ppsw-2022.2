@@ -1,4 +1,4 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package model;
 
 import java.awt.Frame;
 import javax.swing.JOptionPane;
@@ -15,3 +15,5 @@ public class AboutBox {
         "Sobre JabberPoint", JOptionPane.INFORMATION_MESSAGE);
   }
 }
+// gerenciar e controlar a forma como os dados se comportam por meio das funções, 
+//lógica e regras de negócios estabelecidas.

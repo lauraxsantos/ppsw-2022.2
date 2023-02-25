@@ -1,4 +1,4 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package controller;
 
 import java.awt.Frame;
 import java.awt.Menu;
@@ -10,6 +10,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
+
+import model.AboutBox;
+import model.Accessor;
+import model.Presentation;
+import model.XMLAccessor;
 
 public class MenuController extends MenuBar {
 
@@ -26,7 +31,7 @@ public class MenuController extends MenuBar {
   protected static final String NEW = "Novo";
   protected static final String NEXT = "Próximo";
   protected static final String OPEN = "Abrir";
-  protected static final String PAGENR = "Npumero do Slide?";
+  protected static final String PAGENR = "Número do Slide?";
   protected static final String PREV = "Anteior";
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";

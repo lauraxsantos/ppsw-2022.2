@@ -1,4 +1,4 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package model;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -13,6 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+
+import view.SlideItem;
 
 public class XMLAccessor extends Accessor {
 

@@ -1,18 +1,22 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.image.ImageObserver;
+
+import model.BitmapItem;
 
 public class Style {
 
   private static Style[] styles;
 
   private static final String FONTNAME = "Helvetica";
-  int indent;
-  Color color;
+  public int indent;
+  public Color color;
   Font font;
   int fontSize;
-  int leading;
+  public int leading;
 
   public static void createStyles() {
     styles = new Style[5];
@@ -44,5 +48,13 @@ public class Style {
 
   public Font getFont(float scale) {
     return font.deriveFont(fontSize * scale);
+  }
+
+public void draw(int x, int y, float scale, Graphics g, BitmapItem bitmapItem, ImageObserver observer) {
+    int width = x + (int) (indent * scale);
+    int height = y + (int) (leading * scale);
+
+    g.drawImage(bitmapItem.bufferedImage, width, height, (int) (bitmapItem.bufferedImage.getWidth(observer) * scale),
+        (int) (bitmapItem.bufferedImage.getHeight(observer) * scale), observer);
   }
 }

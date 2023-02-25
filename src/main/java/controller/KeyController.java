@@ -1,7 +1,9 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package controller;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
+import model.Presentation;
 
 public class KeyController extends KeyAdapter {
 

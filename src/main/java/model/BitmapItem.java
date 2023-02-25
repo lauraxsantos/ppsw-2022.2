@@ -1,4 +1,4 @@
-package br.upe.ppsw.jabberpoint.apresentacao;
+package model;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
@@ -8,9 +8,12 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
 
+import view.SlideItem;
+import view.Style;
+
 public class BitmapItem extends SlideItem {
 
-  private BufferedImage bufferedImage;
+  public BufferedImage bufferedImage;
   private String imageName;
 
   protected static final String FILE = "Arquivo ";
@@ -43,13 +46,12 @@ public class BitmapItem extends SlideItem {
         ((int) (myStyle.leading * scale)) + (int) (bufferedImage.getHeight(observer) * scale));
   }
 
-  public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
-    int width = x + (int) (myStyle.indent * scale);
-    int height = y + (int) (myStyle.leading * scale);
-
-    g.drawImage(bufferedImage, width, height, (int) (bufferedImage.getWidth(observer) * scale),
-        (int) (bufferedImage.getHeight(observer) * scale), observer);
-  }
+  /**
+ * @deprecated Use {@link view.Style#draw(int,int,float,Graphics,model.BitmapItem,ImageObserver)} instead
+ */
+public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
+	myStyle.draw(x, y, scale, g, this, observer);
+}
 
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
