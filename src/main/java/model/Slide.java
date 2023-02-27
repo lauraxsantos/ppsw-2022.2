@@ -23,6 +23,9 @@ public class Slide {
   public void append(SlideItem anItem) {
     items.addElement(anItem);
   }
+  public SlideItem getTitle2() {
+	  return title;
+  }
 
   public String getTitle() {
     return title.getText();
@@ -48,7 +51,7 @@ public class Slide {
     return items.size();
   }
 
-  public void draw(Graphics g, Rectangle area, ImageObserver view) {
+  /*public void draw(Graphics g, Rectangle area, ImageObserver view) {
     float scale = getScale(area);
 
     int y = area.y;
@@ -72,5 +75,5 @@ public class Slide {
   private float getScale(Rectangle area) {
     return Math.min(((float) area.width) / ((float) WIDTH),
         ((float) area.height) / ((float) HEIGHT));
-  }
+  }*/
 }

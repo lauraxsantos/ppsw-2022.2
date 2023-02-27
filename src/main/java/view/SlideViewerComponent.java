@@ -5,11 +5,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.ImageObserver;
+
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import model.Presentation;
 import model.Slide;
+import model.TextItem;
 
 public class SlideViewerComponent extends JComponent {
   private static final long serialVersionUID = 227L;
@@ -23,9 +26,13 @@ public class SlideViewerComponent extends JComponent {
   private static final int YPOS = 20;
 
   private Slide slide;
+  protected TextItem title;
   private Font labelFont = null;
   private Presentation presentation = null;
   private JFrame frame = null;
+  
+  public final static int WIDTH = 1200;
+  public final static int HEIGHT = 800;
 
   public SlideViewerComponent(Presentation pres, JFrame frame) {
     setBackground(BGCOLOR);
@@ -35,7 +42,7 @@ public class SlideViewerComponent extends JComponent {
   }
 
   public Dimension getPreferredSize() {
-    return new Dimension(Slide.WIDTH, Slide.HEIGHT);
+    return new Dimension(WIDTH, HEIGHT);
   }
 
   public void update(Presentation presentation, Slide data) {
@@ -65,7 +72,32 @@ public class SlideViewerComponent extends JComponent {
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
 
-    slide.draw(g, area, this);
+    draw(g, area, this, slide);
   }
+  
+  public void draw(Graphics g, Rectangle area, ImageObserver view, Slide slide) {
+	    float scale = getScale(area);
+
+	    int y = area.y;
+
+	    SlideItem slideItem = slide.getTitle2();
+	    Style style = Style.getStyle(slideItem.getLevel());
+	    slideItem.draw(area.x, y, scale, g, style, view);
+
+	    y += slideItem.getBoundingBox(g, view, scale, style).height;
+
+	    for (int number = 0; number < slide.getSize(); number++) {
+	      slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
+
+	      style = Style.getStyle(slideItem.getLevel());
+	      slideItem.draw(area.x, y, scale, g, style, view);
+
+	      y += slideItem.getBoundingBox(g, view, scale, style).height;
+	    }
+	  }
+  private float getScale(Rectangle area) {
+	    return Math.min(((float) area.width) / ((float) WIDTH),
+	        ((float) area.height) / ((float) HEIGHT));
+	  }
 
 }

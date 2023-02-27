@@ -3,6 +3,7 @@ package view;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
 
 import controller.KeyController;
@@ -10,6 +11,7 @@ import controller.MenuController;
 import model.Presentation;
 
 public class SlideViewerFrame extends JFrame {
+
 
   private static final long serialVersionUID = 3227L;
 
@@ -43,5 +45,6 @@ public class SlideViewerFrame extends JFrame {
 
     setVisible(true);
   }
+  
 
 }
