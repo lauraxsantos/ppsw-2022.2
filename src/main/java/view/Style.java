@@ -7,6 +7,8 @@ import java.awt.image.ImageObserver;
 
 import model.BitmapItem;
 
+//estilização
+
 public class Style {
 
   private static Style[] styles;

@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import model.Presentation;
 import model.Slide;
 import model.TextItem;
+//desenha a representação do objeto slide na tela
 
 public class SlideViewerComponent extends JComponent {
   private static final long serialVersionUID = 227L;

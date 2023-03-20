@@ -16,6 +16,8 @@ import model.Accessor;
 import model.Presentation;
 import model.XMLAccessor;
 
+//controla os itens de menu
+
 public class MenuController extends MenuBar {
 
   private static final long serialVersionUID = 227L;
@@ -125,12 +127,16 @@ public class MenuController extends MenuBar {
       public void actionPerformed(ActionEvent actionEvent) {
         String pageNumberStr = JOptionPane.showInputDialog((Object) PAGENR);
         int pageNumber = Integer.parseInt(pageNumberStr);
-        presentation.setSlideNumber(pageNumber - 1);
+        if(pageNumber>0 && pageNumber <= presentation.getSize()) {
+        	presentation.setSlideNumber(pageNumber - 1);
+        	
+        }
       }
     });
 
     add(viewMenu);
 
+   //executado quando alguem clica
     Menu helpMenu = new Menu(HELP);
     helpMenu.add(menuItem = mkMenuItem(ABOUT));
 

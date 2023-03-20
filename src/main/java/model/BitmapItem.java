@@ -46,14 +46,13 @@ public class BitmapItem extends SlideItem {
         ((int) (myStyle.leading * scale)) + (int) (bufferedImage.getHeight(observer) * scale));
   }
 
-  /**
- * @deprecated Use {@link view.Style#draw(int,int,float,Graphics,model.BitmapItem,ImageObserver)} instead
- */
-public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver observer) {
-	myStyle.draw(x, y, scale, g, this, observer);
-}
-
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
   }
+
+@Override
+public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+	// TODO Auto-generated method stub
+	
+}
 }

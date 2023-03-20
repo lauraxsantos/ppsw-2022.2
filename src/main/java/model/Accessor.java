@@ -2,6 +2,8 @@ package model;
 
 import java.io.IOException;
 
+//modelo a ser seguido por determinado tipo
+
 public abstract class Accessor {
 
   public static final String DEMO_NAME = "Apresentação de Demonstração";
