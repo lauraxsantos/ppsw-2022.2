@@ -7,6 +7,7 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
+import controller.PresentationController;
 import model.Accessor;
 import model.Presentation;
 import model.XMLAccessor;
@@ -31,18 +32,10 @@ public class JabberPointApplication implements CommandLineRunner {
   public void run(String... args) throws Exception {
     Style.createStyles();
 
-    Presentation presentation = new Presentation();
-
-    new SlideViewerFrame(JABVERSION, presentation);
 
     try {
-      if (args.length == 0) {
-        Accessor.getDemoAccessor().loadFile(presentation, "");
-      } else {
-        new XMLAccessor().loadFile(presentation, args[0]);
-      }
-
-      presentation.setSlideNumber(0);
+      PresentationController presentation = new PresentationController();
+      presentation.load();
 
     } catch (IOException ex) {
       JOptionPane.showMessageDialog(null, IOERR + ex, JABERR, JOptionPane.ERROR_MESSAGE);
