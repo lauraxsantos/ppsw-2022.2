@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -14,6 +14,10 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import model.BitmapItem;
+import model.Presentation;
+import model.Slide;
+import model.TextItem;
 import view.SlideItem;
 
 public class XMLAccessor extends Accessor {

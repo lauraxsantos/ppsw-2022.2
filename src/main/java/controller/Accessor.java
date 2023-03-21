@@ -1,6 +1,9 @@
-package model;
+package controller;
 
 import java.io.IOException;
+
+import model.DemoPresentation;
+import model.Presentation;
 
 //modelo a ser seguido por determinado tipo
 

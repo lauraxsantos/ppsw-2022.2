@@ -8,10 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
 import controller.PresentationController;
-import model.Accessor;
-import model.Presentation;
-import model.XMLAccessor;
-import view.SlideViewerFrame;
 import view.Style;
 
 @SpringBootApplication

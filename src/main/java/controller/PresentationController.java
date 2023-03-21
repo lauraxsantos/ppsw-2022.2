@@ -2,9 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import model.Accessor;
 import model.Presentation;
-import model.XMLAccessor;
 import view.SlideViewerFrame;
 
 public class PresentationController {

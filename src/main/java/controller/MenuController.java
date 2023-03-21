@@ -12,9 +12,7 @@ import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
 import model.AboutBox;
-import model.Accessor;
 import model.Presentation;
-import model.XMLAccessor;
 
 //controla os itens de menu
 

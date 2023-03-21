@@ -3,6 +3,8 @@ package model;
 import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
 
+import controller.Accessor;
+
 //tipo de presentation
 
 public class DemoPresentation extends Accessor {
