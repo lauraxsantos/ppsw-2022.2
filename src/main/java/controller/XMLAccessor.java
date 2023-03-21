@@ -17,8 +17,8 @@ import org.xml.sax.SAXException;
 import model.BitmapItem;
 import model.Presentation;
 import model.Slide;
+import model.SlideItem;
 import model.TextItem;
-import view.SlideItem;
 
 public class XMLAccessor extends Accessor {
 

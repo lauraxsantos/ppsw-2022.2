@@ -8,7 +8,6 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
 
-import view.SlideItem;
 import view.Style;
 
 public class BitmapItem extends SlideItem {
@@ -55,4 +54,5 @@ public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserv
 	// TODO Auto-generated method stub
 	
 }
+
 }

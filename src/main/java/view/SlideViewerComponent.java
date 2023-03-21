@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 
 import model.Presentation;
 import model.Slide;
+import model.SlideItem;
 import model.TextItem;
 //desenha a representação do objeto slide na tela
 

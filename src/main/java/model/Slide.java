@@ -2,8 +2,6 @@ package model;
 
 import java.util.Vector;
 
-import view.SlideItem;
-
 public class Slide {
 
   public final static int WIDTH = 1200;

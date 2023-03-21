@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import view.SlideItem;
 import view.Style;
 
 public class TextItem extends SlideItem {
