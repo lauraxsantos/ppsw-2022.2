@@ -5,15 +5,15 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.image.ImageObserver;
+
 
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
 import model.Presentation;
 import model.Slide;
-import model.SlideItem;
 import model.TextItem;
+
 //desenha a representação do objeto slide na tela
 
 public class SlideViewerComponent extends JComponent {
@@ -32,6 +32,7 @@ public class SlideViewerComponent extends JComponent {
   private Font labelFont = null;
   private Presentation presentation = null;
   private JFrame frame = null;
+  private SlideDraw draw = new SlideDraw();
   
   public final static int WIDTH = 1200;
   public final static int HEIGHT = 800;
@@ -73,11 +74,13 @@ public class SlideViewerComponent extends JComponent {
         XPOS, YPOS);
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
+    
+    
 
-    draw(g, area, this, slide);
+    draw.drawSlide(g, area, this, slide);
   }
   
-  public void draw(Graphics g, Rectangle area, ImageObserver view, Slide slide) {
+  /*public void draw(Graphics g, Rectangle area, ImageObserver view, Slide slide) {
 	    float scale = getScale(area);
 
 	    int y = area.y;
@@ -100,6 +103,6 @@ public class SlideViewerComponent extends JComponent {
   private float getScale(Rectangle area) {
 	    return Math.min(((float) area.width) / ((float) WIDTH),
 	        ((float) area.height) / ((float) HEIGHT));
-	  }
+	  }*/
 
 }
