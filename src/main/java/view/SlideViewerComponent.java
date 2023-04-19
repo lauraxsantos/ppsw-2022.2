@@ -34,8 +34,8 @@ public class SlideViewerComponent extends JComponent {
   private JFrame frame = null;
   private SlideDraw draw = new SlideDraw();
   
-  public final static int WIDTH = 1200;
-  public final static int HEIGHT = 800;
+  /*public final static int WIDTH = 1200;
+  public final static int HEIGHT = 800;*/
 
   public SlideViewerComponent(Presentation pres, JFrame frame) {
     setBackground(BGCOLOR);
@@ -74,7 +74,6 @@ public class SlideViewerComponent extends JComponent {
         XPOS, YPOS);
 
     Rectangle area = new Rectangle(0, YPOS, getWidth(), (getHeight() - YPOS));
-    
     
 
     draw.drawSlide(g, area, this, slide);

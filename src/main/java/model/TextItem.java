@@ -12,14 +12,15 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.ImageObserver;
 import java.text.AttributedString;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Iterator;
+
 
 import view.Style;
 
 public class TextItem extends SlideItem {
 
-  private String text;
+  public String text;
 
   private static final String EMPTYTEXT = "No Text Given";
 
@@ -44,6 +45,7 @@ public class TextItem extends SlideItem {
     return attrStr;
   }
 
+  @Override
   public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
     List<TextLayout> layouts = getLayouts(g, myStyle, scale);
 
@@ -68,6 +70,7 @@ public class TextItem extends SlideItem {
     return new Rectangle((int) (myStyle.indent * scale), 0, xsize, ysize);
   }
 
+  @Override
   public void draw(int x, int y, float scale, Graphics g, Style myStyle, ImageObserver o) {
     if (text == null || text.length() == 0) {
       return;
@@ -113,5 +116,7 @@ public class TextItem extends SlideItem {
   public String toString() {
     return "TextItem[" + getLevel() + "," + getText() + "]";
   }
+
+
 
 }

@@ -12,7 +12,7 @@ public class Presentation {
   private int currentSlideNumber = 0;
 
   public Presentation() {
-    slideViewComponent = null;
+    // slideViewComponent = null;
     clear();
   }
 
@@ -20,6 +20,7 @@ public class Presentation {
     this.slideViewComponent = slideViewerComponent;
     clear();
   }
+  
 
   public int getSize() {
     return showList.size();
@@ -79,6 +80,7 @@ public class Presentation {
   public Slide getCurrentSlide() {
     return getSlide(currentSlideNumber);
   }
+
 
   public void exit(int n) {
     System.exit(n);

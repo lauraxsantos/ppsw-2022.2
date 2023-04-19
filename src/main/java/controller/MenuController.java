@@ -8,11 +8,18 @@ import java.awt.MenuShortcut;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.io.File;
+
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.springframework.util.ResourceUtils;
 
 import model.AboutBox;
 import model.Presentation;
+import view.SlideViewerComponent;
 
 //controla os itens de menu
 
@@ -36,12 +43,18 @@ public class MenuController extends MenuBar {
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
-  protected static final String TESTFILE = "classpath:test.xml";
-  protected static final String SAVEFILE = "classpath:dump.xml";
+  // protected static final String TESTFILE = "classpath:test.xml";
+  // protected static final String SAVEFILE = "classpath:dump.xml";
+  protected static final String TESTFILE = "src/main/resources/test.json";
+  protected static final String SAVEFILE = "src/main/resources";
+
+
 
   protected static final String IOEX = "IO Exception: ";
   protected static final String LOADERR = "Erro ao carregar";
   protected static final String SAVEERR = "Erro ao salvar";
+
+  public SlideViewerComponent slideViewer;
 
   public MenuController(Frame frame, Presentation pres) {
     parent = frame;
@@ -51,22 +64,72 @@ public class MenuController extends MenuBar {
 
     Menu fileMenu = new Menu(FILE);
     fileMenu.add(menuItem = mkMenuItem(OPEN));
+    menuItem.addActionListener(actionEvent -> {
+			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("json", "json");
 
-    menuItem.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent actionEvent) {
+			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			jfc.setAcceptAllFileFilterUsed(false);
+			jfc.addChoosableFileFilter(filter);
+
+			int returnValue = jfc.showOpenDialog(parent);
+
+			if (returnValue == JFileChooser.APPROVE_OPTION) {
+        File selectedFile = jfc.getSelectedFile();
+				String path = selectedFile.getAbsolutePath();
+				
         presentation.clear();
 
-        Accessor xmlAccessor = new XMLAccessor();
+         IFileFormat json = new JSONFormat();
+
+         json.load(path);
+         presentation.setSlideNumber(0);
+
+         parent.repaint();
+
+        // Presentation prese = file.load(path);
+        // prese.setSlideNumber(0);
+        // slideViewer.update(prese.getCurrentSlide(), );
+
+        
+			}
+    });
+
+    /*menuItem.addActionListener(new ActionListener(){
+      public void actionPerformed(ActionEvent e) {
+        presentation.clear();
+
+        IFileFormat json = new JSONFormat();
+
         try {
-          xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+          json.load(ResourceUtils.getFile(TESTFILE).getAbsolutePath());
           presentation.setSlideNumber(0);
+          System.out.println("olá");
         } catch (IOException exc) {
-          JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
-        }
+       }
 
         parent.repaint();
+
+
       }
-    });
+     });*/
+
+     menuItem.addActionListener(new ActionListener() {
+       public void actionPerformed(ActionEvent actionEvent) {
+         presentation.clear();
+
+         Accessor xmlAccessor = new XMLAccessor();
+
+         try {
+           xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
+           presentation.setSlideNumber(0);
+         } catch (IOException exc) {
+           JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
+         }
+
+         parent.repaint();
+       }
+     });
 
     fileMenu.add(menuItem = mkMenuItem(NEW));
 
@@ -89,6 +152,8 @@ public class MenuController extends MenuBar {
         }
       }
     });
+
+
 
     fileMenu.addSeparator();
 

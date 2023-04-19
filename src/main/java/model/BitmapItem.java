@@ -10,6 +10,7 @@ import org.springframework.util.ResourceUtils;
 
 import view.Style;
 
+
 public class BitmapItem extends SlideItem {
 
   public BufferedImage bufferedImage;
@@ -49,10 +50,11 @@ public class BitmapItem extends SlideItem {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
   }
 
-@Override
-public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
-	// TODO Auto-generated method stub
+
+
+  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
+	  // TODO Auto-generated method stub
 	
-}
+  }
 
 }

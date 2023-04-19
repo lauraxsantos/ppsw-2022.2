@@ -2,24 +2,15 @@ package controller;
 
 import java.io.IOException;
 
-import model.DemoPresentation;
 import model.Presentation;
+
 
 //modelo a ser seguido por determinado tipo
 
-public abstract class Accessor {
+public interface Accessor {
 
-  public static final String DEMO_NAME = "Apresentação de Demonstração";
-  public static final String DEFAULT_EXTENSION = ".xml";
+    void loadFile(Presentation presentation, String fileName) throws IOException;
 
-  public static Accessor getDemoAccessor() {
-    return new DemoPresentation();
-  }
-
-  public Accessor() {}
-
-  abstract public void loadFile(Presentation presentation, String fileName) throws IOException;
-
-  abstract public void saveFile(Presentation presentation, String fileName) throws IOException;
+     void saveFile(Presentation presentation, String fileName) throws IOException;
 
 }

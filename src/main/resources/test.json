@@ -1,0 +1,87 @@
+{
+    "title": "Apresentação em JSON",
+    "slides": [
+      {
+        "title": "JabberPoint: JSON",
+        "items": [
+          {
+            "level": 1,
+            "text": "Apresentação de Slides",
+            "type": "TEXT"
+          },
+          {
+            "level": 2,
+            "text": "Copyright (c) 1996-now: Ian Darwin",
+            "type": "TEXT"
+          },
+          {
+            "level": 4,
+            "text": "Disciplina Padrões de Projeto de Software (ppsw) 2022.2",
+            "type": "TEXT"
+          },  
+          {
+            "level": 1,
+            "text": "Para Navegar:",
+            "type": "TEXT"
+          },
+          {
+            "level": 3,
+            "text": "Próximo slide: Up ou Enter",
+            "type": "TEXT"
+          },
+          {
+            "level": 3,
+            "text": "Slide Anterior: Down",
+            "type": "TEXT"
+          },
+          {
+            "level": 3,
+            "text": "Parar: q ou Q",
+            "type": "TEXT"
+          }
+        ]
+      },
+      {
+        "title": "Demonstração dos níveis e estilos de uma apresentação",
+        "items": [
+          {
+            "level": 1,
+            "text": "Nível 1",
+            "type": "TEXT"
+          },
+          {
+            "level": 2,
+            "text": "Nível 2",
+            "type": "TEXT"
+          },
+          {
+            "level": 1,
+            "text": "Nível 1",
+            "type": "TEXT"
+          },
+          {
+            "level": 1,
+            "text": "Estilo nível 1",
+            "type": "TEXT"
+          },
+          {
+            "level": 2,
+            "text": "Estilo nível 2",
+            "type": "TEXT"
+          },
+          {
+            "level": 3,
+            "text": "Estilo nível 3",
+            "type": "TEXT"
+          },
+          {
+            "level": 4,
+            "text": "Estilo nível 4",
+            "type": "TEXT"
+          }
+        ]
+      }
+    ]
+}
+
+      

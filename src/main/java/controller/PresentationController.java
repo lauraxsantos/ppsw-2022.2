@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import model.DemoPresentation;
 import model.Presentation;
 import view.SlideViewerFrame;
 
@@ -14,11 +15,13 @@ public class PresentationController {
 	public Presentation load(String...args) throws IOException {
 		
 		Presentation presentation = new Presentation();
+		DemoPresentation demoPresentation = new DemoPresentation();
 		
 		new SlideViewerFrame(JABVERSION, presentation);	
 		
 		if (args.length == 0) {
-			Accessor.getDemoAccessor().loadFile(presentation, "");
+			demoPresentation.loadFile(presentation, "");
+			// Accessor.getDemoAccessor().loadFile(presentation, "");
 		} else {
 			new XMLAccessor().loadFile(presentation, args[0]);
 		}

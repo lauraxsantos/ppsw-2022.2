@@ -8,9 +8,11 @@ import model.Slide;
 import model.SlideItem;
 
 public class SlideDraw {
+	
 	  public final static int WIDTH = 1200;
 	  public final static int HEIGHT = 800;
 	
+	  
 	  public void drawSlide(Graphics g, Rectangle area, ImageObserver view, Slide slide) {
 		    float scale = getScale(area);
 

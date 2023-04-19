@@ -20,7 +20,7 @@ import model.Slide;
 import model.SlideItem;
 import model.TextItem;
 
-public class XMLAccessor extends Accessor {
+public class XMLAccessor implements Accessor {
 
   protected static final String DEFAULT_API_TO_USE = "dom";
 
@@ -100,6 +100,7 @@ public class XMLAccessor extends Accessor {
     }
 
     String type = attributes.getNamedItem(KIND).getTextContent();
+
     if (TEXT.equals(type)) {
       slide.append(new TextItem(level, item.getTextContent()));
     } else {
