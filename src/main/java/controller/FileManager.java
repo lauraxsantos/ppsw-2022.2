@@ -7,7 +7,7 @@ import model.Presentation;
 
 public class FileManager{
 
-    private static HashMap<String, IFileFormat> templates = new HashMap<String, IFileFormat>();
+    private  HashMap<String, IFileFormat> tipos = new HashMap<String, IFileFormat>();
 
     public FileManager() {
 
@@ -15,13 +15,13 @@ public class FileManager{
         // templates.put("xml", xmlAccessor);
 
 		JSONFormat jsonFormat = new JSONFormat();
-		templates.put("json", jsonFormat);
+		tipos.put("json", jsonFormat);
 	}
 
     public Presentation load(String filePath) {
         try{
             String extension = FilenameUtils.getExtension(filePath);
-            return getTemplate(extension).load(filePath);
+            return getTipos(extension).load(filePath);
 
         } catch (Exception e){
             e.printStackTrace();
@@ -33,14 +33,14 @@ public class FileManager{
 
         try {
             String extension = FilenameUtils.getExtension(filePath);
-            getTemplate(extension).save(presentation, filePath);            
+            getTipos(extension).save(presentation, filePath);            
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
 	}
 
-	private static IFileFormat getTemplate(String extension) {
-		return templates.get(extension);
+	private IFileFormat getTipos(String extension) {
+		return tipos.get(extension);
 	}
 
 
