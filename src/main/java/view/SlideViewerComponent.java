@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 
@@ -14,7 +13,6 @@ import model.Presentation;
 import model.Slide;
 import model.TextItem;
 
-//desenha a representação do objeto slide na tela
 
 public class SlideViewerComponent extends JComponent {
   private static final long serialVersionUID = 227L;
@@ -32,10 +30,8 @@ public class SlideViewerComponent extends JComponent {
   private Font labelFont = null;
   private Presentation presentation = null;
   private JFrame frame = null;
-  private SlideDraw draw = new SlideDraw();
+  private DrawSlide draw = new DrawSlide();
   
-  /*public final static int WIDTH = 1200;
-  public final static int HEIGHT = 800;*/
 
   public SlideViewerComponent(Presentation pres, JFrame frame) {
     setBackground(BGCOLOR);
@@ -77,31 +73,6 @@ public class SlideViewerComponent extends JComponent {
     
 
     draw.drawSlide(g, area, this, slide);
-  }
-  
-  /*public void draw(Graphics g, Rectangle area, ImageObserver view, Slide slide) {
-	    float scale = getScale(area);
-
-	    int y = area.y;
-
-	    SlideItem slideItem = slide.getTitle2();
-	    Style style = Style.getStyle(slideItem.getLevel());
-	    slideItem.draw(area.x, y, scale, g, style, view);
-
-	    y += slideItem.getBoundingBox(g, view, scale, style).height;
-
-	    for (int number = 0; number < slide.getSize(); number++) {
-	      slideItem = (SlideItem) slide.getSlideItems().elementAt(number);
-
-	      style = Style.getStyle(slideItem.getLevel());
-	      slideItem.draw(area.x, y, scale, g, style, view);
-
-	      y += slideItem.getBoundingBox(g, view, scale, style).height;
-	    }
-	  }
-  private float getScale(Rectangle area) {
-	    return Math.min(((float) area.width) / ((float) WIDTH),
-	        ((float) area.height) / ((float) HEIGHT));
-	  }*/
+  }  
 
 }
