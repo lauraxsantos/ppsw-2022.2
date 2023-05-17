@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import model.DemoPresentation;
 import model.Presentation;
+import model.accessor.XMLAccessorLoad;
 import view.SlideViewerFrame;
 
 public class PresentationController {
@@ -19,11 +20,10 @@ public class PresentationController {
 		
 		new SlideViewerFrame(JABVERSION, presentation);	
 		
-		if (args.length == 0) {
+		if (args.length >= 1) {
 			demoPresentation.loadFile(presentation, "");
-			// Accessor.getDemoAccessor().loadFile(presentation, "");
 		} else {
-			new XMLAccessor().loadFile(presentation, args[0]);
+			new XMLAccessorLoad().loadFile(presentation, args[1]);
 		}
 		
 		presentation.setSlideNumber(0);

@@ -1,14 +1,9 @@
 package model;
 
-import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import org.springframework.util.ResourceUtils;
-
-import view.Style;
 
 
 public class BitmapItem extends SlideItem {
@@ -40,21 +35,9 @@ public class BitmapItem extends SlideItem {
     return imageName;
   }
 
-  public Rectangle getBoundingBox(Graphics g, ImageObserver observer, float scale, Style myStyle) {
-    return new Rectangle((int) (myStyle.indent * scale), 0,
-        (int) (bufferedImage.getWidth(observer) * scale),
-        ((int) (myStyle.leading * scale)) + (int) (bufferedImage.getHeight(observer) * scale));
-  }
-
   public String toString() {
     return "BitmapItem[" + getLevel() + "," + imageName + "]";
   }
 
-
-
-  public void draw(int x, int y, float scale, Graphics g, Style style, ImageObserver observer) {
-	  // TODO Auto-generated method stub
-	
-  }
 
 }

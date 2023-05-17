@@ -3,19 +3,18 @@ package model;
 import java.io.FileNotFoundException;
 import org.springframework.util.ResourceUtils;
 
-import controller.Accessor;
+import model.accessor.AccessorLoad;
 
 //tipo de presentation
 
-public class DemoPresentation implements Accessor {
+public class DemoPresentation extends AccessorLoad {
 
+  @Override
   public void loadFile(Presentation presentation, String unusedFilename)
       throws FileNotFoundException {
 
     presentation.setTitle("Apresentação de Demonstração");
-
-    Slide slide;
-    slide = new Slide();
+    Slide slide = new Slide();
 
     slide.setTitle("JabberPoint");
     slide.append(1, "Ferramenta de Apresentação de Slides");
@@ -52,8 +51,5 @@ public class DemoPresentation implements Accessor {
     presentation.append(slide);
   }
 
-  public void saveFile(Presentation presentation, String unusedFilename) {
-    throw new IllegalStateException("Não é possível salvar arquivo na versão demo!");
-  }
 
 }

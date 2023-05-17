@@ -15,10 +15,15 @@ import javax.swing.filechooser.FileSystemView;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.springframework.util.ResourceUtils;
 
 import model.AboutBox;
+import model.NullPresentation;
 import model.Presentation;
+import model.accessor.AccessorSave;
+import model.accessor.AccessorLoad;
+// import model.accessor.FileManager;
+import model.factories.LoadManager;
+import model.factories.SaveManager;
 import view.SlideViewerComponent;
 
 //controla os itens de menu
@@ -43,12 +48,10 @@ public class MenuController extends MenuBar {
   protected static final String SAVE = "Salvar";
   protected static final String VIEW = "Visualizar";
 
-  // protected static final String TESTFILE = "classpath:test.xml";
-  // protected static final String SAVEFILE = "classpath:dump.xml";
+  // // protected static final String TESTFILE = "classpath:test.xml";
+  // // protected static final String SAVEFILE = "classpath:dump.xml";
   protected static final String TESTFILE = "src/main/resources/test.json";
   protected static final String SAVEFILE = "src/main/resources";
-
-
 
   protected static final String IOEX = "IO Exception: ";
   protected static final String LOADERR = "Erro ao carregar";
@@ -58,15 +61,20 @@ public class MenuController extends MenuBar {
 
   public MenuController(Frame frame, Presentation pres) {
     parent = frame;
-    presentation = pres;
+
+    if (pres == null){
+      presentation = new NullPresentation();
+    } else {
+      presentation = pres;
+    }
 
     MenuItem menuItem;
 
     Menu fileMenu = new Menu(FILE);
     fileMenu.add(menuItem = mkMenuItem(OPEN));
     menuItem.addActionListener(actionEvent -> {
-			JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-			FileNameExtensionFilter filter = new FileNameExtensionFilter("json", "json");
+		  JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("json, xml, html", "json", "xml", "html");
 
 			jfc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			jfc.setAcceptAllFileFilterUsed(false);
@@ -77,83 +85,75 @@ public class MenuController extends MenuBar {
 			if (returnValue == JFileChooser.APPROVE_OPTION) {
         File selectedFile = jfc.getSelectedFile();
 				String path = selectedFile.getAbsolutePath();
+
+        String extension = path.substring(path.lastIndexOf("."), path.length());
 				
         presentation.clear();
-
-         IFileFormat json = new JSONFormat();
-
-         json.load(path);
-         presentation.setSlideNumber(0);
-
-         parent.repaint();
-
-        // Presentation prese = file.load(path);
-        // prese.setSlideNumber(0);
-        // slideViewer.update(prese.getCurrentSlide(), );
-
+        
+        LoadManager manager = new LoadManager();
+        // FileManager manager = new FileManager();
+        //Accessor format = manager.setFormat(extension);
+        AccessorLoad format = manager.setFormat(extension);
+        
+        try {
+          format.loadFile(presentation, path);
+          presentation.setSlideNumber(0);
+        } catch (IOException e) {
+          JOptionPane.showMessageDialog(parent, IOEX + e, LOADERR, JOptionPane.ERROR_MESSAGE);
+          e.printStackTrace();
+        } 
+                
+        parent.repaint();
         
 			}
     });
-
-    /*menuItem.addActionListener(new ActionListener(){
-      public void actionPerformed(ActionEvent e) {
-        presentation.clear();
-
-        IFileFormat json = new JSONFormat();
-
-        try {
-          json.load(ResourceUtils.getFile(TESTFILE).getAbsolutePath());
-          presentation.setSlideNumber(0);
-          System.out.println("olá");
-        } catch (IOException exc) {
-       }
-
-        parent.repaint();
-
-
-      }
-     });*/
-
-     menuItem.addActionListener(new ActionListener() {
-       public void actionPerformed(ActionEvent actionEvent) {
-         presentation.clear();
-
-         Accessor xmlAccessor = new XMLAccessor();
-
-         try {
-           xmlAccessor.loadFile(presentation, ResourceUtils.getFile(TESTFILE).getAbsolutePath());
-           presentation.setSlideNumber(0);
-         } catch (IOException exc) {
-           JOptionPane.showMessageDialog(parent, IOEX + exc, LOADERR, JOptionPane.ERROR_MESSAGE);
-         }
-
-         parent.repaint();
-       }
-     });
-
+    
     fileMenu.add(menuItem = mkMenuItem(NEW));
-
-    menuItem.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent actionEvent) {
-        presentation.clear();
+    
+    menuItem.addActionListener(actionEvent -> {
+        Presentation presen = new NullPresentation();
+        
+        presen.clear();
+        
         parent.repaint();
-      }
+      
     });
-
+    
     fileMenu.add(menuItem = mkMenuItem(SAVE));
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        Accessor xmlAccessor = new XMLAccessor();
+        JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("json, html, xml", "json", "xml", "html");
+        
+        jfc.setDialogTitle("Save");;
+        jfc.setAcceptAllFileFilterUsed(false);
+        jfc.addChoosableFileFilter(filter);
+        
+        int returnValue = jfc.showOpenDialog(parent);
+        
+        if (returnValue == JFileChooser.APPROVE_OPTION) {
+          File selectedFile = jfc.getSelectedFile();
+          String path = selectedFile.getAbsolutePath();
+          
+          
+          String extension = path.substring(path.lastIndexOf("."), path.length());
+
+          SaveManager manager = new SaveManager();
+          
+          // FileManager manager = new FileManager();
+ 
+          // Accessor format = manager.setFormat(extension);
+          AccessorSave format = manager.setFormat(extension);
+
         try {
-          xmlAccessor.saveFile(presentation, SAVEFILE);
+          format.saveFile(presentation, path);
         } catch (IOException exc) {
           JOptionPane.showMessageDialog(parent, IOEX + exc, SAVEERR, JOptionPane.ERROR_MESSAGE);
         }
       }
-    });
-
-
+    }
+  });
 
     fileMenu.addSeparator();
 
@@ -161,7 +161,7 @@ public class MenuController extends MenuBar {
 
     menuItem.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent actionEvent) {
-        presentation.exit(0);
+        System.exit(0);
       }
     });
 

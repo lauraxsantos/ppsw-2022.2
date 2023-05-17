@@ -7,37 +7,37 @@
           {
             "level": 1,
             "text": "Apresentação de Slides",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 2,
             "text": "Copyright (c) 1996-now: Ian Darwin",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 4,
             "text": "Disciplina Padrões de Projeto de Software (ppsw) 2022.2",
-            "type": "TEXT"
+            "kind": "text"
           },  
           {
             "level": 1,
             "text": "Para Navegar:",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 3,
             "text": "Próximo slide: Up ou Enter",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 3,
             "text": "Slide Anterior: Down",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 3,
             "text": "Parar: q ou Q",
-            "type": "TEXT"
+            "kind": "text"
           }
         ]
       },
@@ -47,37 +47,37 @@
           {
             "level": 1,
             "text": "Nível 1",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 2,
             "text": "Nível 2",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 1,
             "text": "Nível 1",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 1,
             "text": "Estilo nível 1",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 2,
             "text": "Estilo nível 2",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 3,
             "text": "Estilo nível 3",
-            "type": "TEXT"
+            "kind": "text"
           },
           {
             "level": 4,
             "text": "Estilo nível 4",
-            "type": "TEXT"
+            "kind": "text"
           }
         ]
       }

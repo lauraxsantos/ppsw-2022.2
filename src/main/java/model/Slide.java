@@ -4,15 +4,18 @@ import java.util.Vector;
 
 public class Slide {
 
-  public final static int WIDTH = 1200;
-  public final static int HEIGHT = 800;
-
   protected TextItem title;
   protected Vector<SlideItem> items;
 
   public Slide() {
     items = new Vector<SlideItem>();
+
   }
+
+  public Slide(TextItem title){
+    this();
+    this.title = title;
+  } 
 
   public void append(SlideItem anItem) {
     items.addElement(anItem);

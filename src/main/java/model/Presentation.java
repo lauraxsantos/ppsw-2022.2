@@ -7,9 +7,9 @@ import view.SlideViewerComponent;
 public class Presentation {
 
   private String title;
-  private ArrayList<Slide> showList = null;
+  protected ArrayList<Slide> showList = null;
   private SlideViewerComponent slideViewComponent = null;
-  private int currentSlideNumber = 0;
+  public int currentSlideNumber = 0;
 
   public Presentation() {
     // slideViewComponent = null;
@@ -61,9 +61,25 @@ public class Presentation {
     }
   }
 
+  public void add(Slide slide) {
+		if (this.showList == null) {
+			this.showList = new ArrayList<>();
+		}
+
+		this.showList.add(this.showList.size(), slide);;
+	}
+
   public void clear() {
     showList = new ArrayList<Slide>();
     setSlideNumber(-1);
+  }
+
+  public void setShowList(ArrayList<Slide> showList){
+    this.showList = showList;
+  }
+
+  public ArrayList<Slide> getShowList(){
+    return this.showList;
   }
 
   public void append(Slide slide) {
@@ -81,8 +97,4 @@ public class Presentation {
     return getSlide(currentSlideNumber);
   }
 
-
-  public void exit(int n) {
-    System.exit(n);
-  }
 }
